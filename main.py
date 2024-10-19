@@ -20,9 +20,9 @@ def save_path(relative_path: str) -> str:
 pygame.init()
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption('Google Dino Game')
-pygame.display.set_icon(pygame.image.load('images/Player/PlayerStand.png').convert_alpha())
+pygame.display.set_icon(pygame.image.load(resource_path('images/Player/PlayerStand.png')).convert_alpha())
 clock = pygame.time.Clock()
-main_font = pygame.font.Font('fonts/BBB_Simulator_Black.otf', 50)
+main_font = pygame.font.Font(resource_path('fonts/BBB_Simulator_Black.otf'), 50)
 
 class Game:
 
@@ -31,9 +31,9 @@ class Game:
 		self.active = False
 
 		# Audio
-		self.death_sound = pygame.mixer.Sound('audio/die.wav')
+		self.death_sound = pygame.mixer.Sound(resource_path('audio/die.wav'))
 		self.death_sound.set_volume(1)
-		self.point_sound = pygame.mixer.Sound('audio/point.wav')
+		self.point_sound = pygame.mixer.Sound(resource_path('audio/point.wav'))
 		self.point_sound.set_volume(1)
 
 		# Timers
@@ -137,15 +137,15 @@ class Enemy(pygame.sprite.Sprite):
 		# Images
 		if type == 'Cactus':
 
-			cact_1 = pygame.image.load('images/cactus/Cactus1.png').convert_alpha()
+			cact_1 = pygame.image.load(resource_path('images/cactus/Cactus1.png')).convert_alpha()
 			self.frames = [cact_1]
 			self.frame_vel = 0
 			y_pos = 315
 
 		elif type == 'Bird':
 			
-			bird_1 = pygame.image.load('images/Bird/Bird1.png').convert_alpha()
-			bird_2 = pygame.image.load('images/Bird/Bird2.png').convert_alpha()
+			bird_1 = pygame.image.load(resource_path('images/Bird/Bird1.png')).convert_alpha()
+			bird_2 = pygame.image.load(resource_path('images/Bird/Bird2.png')).convert_alpha()
 			self.frames = [bird_1, bird_2]
 			self.frame_vel = 0.05
 			y_pos = 240
@@ -179,14 +179,14 @@ class Player(pygame.sprite.Sprite):
 	def __init__(self) -> None:
 
 		# Images
-		self.jump1 = pygame.image.load('images/Player/PlayerStand.png').convert_alpha()
-		self.walk1 = pygame.image.load('images/Player/PlayerWalk1.png').convert_alpha()
-		self.walk2 = pygame.image.load('images/Player/PlayerWalk2.png').convert_alpha()
-		self.duck1 = pygame.image.load('images/Player/PlayerDuck1.png').convert_alpha()
-		self.duck2 = pygame.image.load('images/Player/PlayerDuck2.png').convert_alpha()
+		self.jump1 = pygame.image.load(resource_path('images/Player/PlayerStand.png')).convert_alpha()
+		self.walk1 = pygame.image.load(resource_path('images/Player/PlayerWalk1.png')).convert_alpha()
+		self.walk2 = pygame.image.load(resource_path('images/Player/PlayerWalk2.png')).convert_alpha()
+		self.duck1 = pygame.image.load(resource_path('images/Player/PlayerDuck1.png')).convert_alpha()
+		self.duck2 = pygame.image.load(resource_path('images/Player/PlayerDuck2.png')).convert_alpha()
 
 		# Audio
-		self.jump_sound = pygame.mixer.Sound('audio/jump.wav')
+		self.jump_sound = pygame.mixer.Sound(resource_path('audio/jump.wav'))
 		self.jump_sound.set_volume(1)
  
 		super().__init__()
@@ -276,7 +276,7 @@ class Ground(pygame.sprite.Sprite):
 	def __init__(self, x_offset) -> None:
 
 		super().__init__()
-		self.image = pygame.image.load('images/Ground.png').convert_alpha()
+		self.image = pygame.image.load(resource_path('images/Ground.png')).convert_alpha()
 		self.rect = self.image.get_rect(center = (0, HEIGHT - 100))
 
 		self.rect.x = x_offset
