@@ -114,7 +114,7 @@ class Game:
 
 			print('No save file present; creating new one...')
 			os.makedirs(save_path('saves\\'))
-			self.save(high_score = 0, costume_num = 0)
+			self.save(high_score = 0)
 			self.highscore = 0
 
 	def restart(self) -> None:
@@ -148,7 +148,7 @@ class Enemy(pygame.sprite.Sprite):
 			bird_2 = pygame.image.load(resource_path('images/Bird/Bird2.png')).convert_alpha()
 			self.frames = [bird_1, bird_2]
 			self.frame_vel = 0.05
-			y_pos = 240
+			y_pos = 235
 
 		self.frame_index = 0
 		self.scroll_vel = 3
@@ -158,6 +158,8 @@ class Enemy(pygame.sprite.Sprite):
 		self.rect = self.image.get_rect(midbottom = (WIDTH + randint(0, 300), y_pos))
 
 	def update(self) -> None:
+
+		self.mask = pygame.mask.from_surface(self.image)
 
 		self.animate()
 		self.scroll()
@@ -201,7 +203,7 @@ class Player(pygame.sprite.Sprite):
 
 		# Variables
 		self.grav = 0
-		self.jump_vel = -7
+		self.jump_vel = -6
 		self.fall_vel = 0.15
 		self.ducking = False
 		self.walk_frames = [self.walk1, self.walk2]
@@ -212,6 +214,8 @@ class Player(pygame.sprite.Sprite):
 		self.reset()
 
 	def update(self) -> None:
+
+		self.mask = pygame.mask.from_surface(self.image)
 
 		self.fall()
 		self.animate()
@@ -363,6 +367,7 @@ def main():
 			screen.blit(game.instrtxt_surf, game.instrtxt_rect)
 			screen.blit(player.sprite.intro, player.sprite.intro_rect)
 
+		pygame.display.set_caption(f'Google Dino Game | FPS {round(clock.get_fps(), 1)}')
 		pygame.display.update()
 		clock.tick(FPS)
 
