@@ -1,7 +1,9 @@
 import pygame
 import os
 import sys
+
 from random import randint, choice
+
 from constants import *
 
 def resource_path(relative_path: str) -> str:
@@ -312,7 +314,7 @@ def main():
 
 				game.save(game.highscore)
 				pygame.quit()
-				exit()
+				sys.exit()
 
 			if game.active:
 
@@ -371,4 +373,4 @@ def main():
 		pygame.display.update()
 		clock.tick(FPS)
 
-main()
+if __name__ == '__main__': main()
