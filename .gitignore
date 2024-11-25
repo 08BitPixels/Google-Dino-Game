@@ -1,1 +1,2 @@
-pyinstaller
+pyinstaller/
+__pycache__/
